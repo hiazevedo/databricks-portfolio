@@ -12,7 +12,7 @@
 
 ## Projetos
 
-### [Semana 1 — fuel-price-pipeline-br](./fuel-price-pipeline-br)
+### [Semana 1 — fuel-price-pipeline-br](https://github.com/hiazevedo/fuel-price-pipeline-br)
 
 Pipeline batch com **Medallion Architecture** processando 120.823 registros de preços de combustíveis brasileiros (ANP 2004–2021).
 
@@ -27,7 +27,7 @@ Pipeline batch com **Medallion Architecture** processando 120.823 registros de p
 
 ---
 
-### [Semana 2 — earthquake-streaming-pipeline](./earthquake-streaming-pipeline)
+### [Semana 2 — earthquake-streaming-pipeline](https://github.com/hiazevedo/earthquake-streaming-pipeline)
 
 Pipeline de **streaming em tempo real** coletando dados sísmicos da API USGS com Auto Loader e Structured Streaming.
 
@@ -43,7 +43,7 @@ Pipeline de **streaming em tempo real** coletando dados sísmicos da API USGS co
 
 ---
 
-### [Semana 3 — earthquake-ml-pipeline](./earthquake-ml-pipeline)
+### [Semana 3 — earthquake-ml-pipeline](https://github.com/hiazevedo/earthquake-ml-pipeline)
 
 Pipeline completo de **Machine Learning** com 28.700 eventos sísmicos reais, feature engineering avançado e registro de modelos no MLflow.
 
@@ -106,3 +106,6 @@ Todos os projetos foram desenvolvidos e testados no **Databricks Free Edition** 
 | Visualizações (Matplotlib/Seaborn) | Semana 1, 2, 3 |
 
 ---
+[![GitHub](https://img.shields.io/badge/GitHub-hiazevedo-181717?style=flat&logo=github)](https://github.com/hiazevedo)
+
+Portfólio desenvolvido com foco em projetos práticos que cobrem o ciclo completo de engenharia de dados: ingestão → transformação → qualidade → analytics → machine learning.
