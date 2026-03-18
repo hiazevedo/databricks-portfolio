@@ -1,4 +1,4 @@
-# 📊 Databricks Data Engineering Portfolio
+# Databricks Data Engineering Portfolio
 
 > Portfólio de projetos práticos de Engenharia de Dados e Machine Learning com Databricks, Delta Lake e MLflow
 
@@ -6,13 +6,24 @@
 ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white)
 ![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=for-the-badge&logo=mlflow&logoColor=white)
 ![Delta Lake](https://img.shields.io/badge/Delta_Lake-003366?style=for-the-badge&logo=delta&logoColor=white)
+![Unity Catalog](https://img.shields.io/badge/Unity_Catalog-0194E2?style=for-the-badge&logo=databricks&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
 ---
 
-## 🗂️ Projetos
+## Projetos
 
-### 🛢️ [fuel-price-pipeline-br](https://github.com/hiazevedo/fuel-price-pipeline-br)
+| # | Repositório | Tema |
+|---|-------------|------|
+| 1 | [fuel-price-pipeline-br](https://github.com/hiazevedo/fuel-price-pipeline-br) | Batch · Medallion · ANP |
+| 2 | [earthquake-streaming-pipeline](https://github.com/hiazevedo/earthquake-streaming-pipeline) | Streaming · Auto Loader · USGS |
+| 3 | [earthquake-ml-pipeline](https://github.com/hiazevedo/earthquake-ml-pipeline) | ML · MLflow · Spark ML |
+| 4 | [weather-dlt-pipeline](https://github.com/hiazevedo/weather-dlt-pipeline) | DLT · Workflows · Open-Meteo |
+| 5 | [weather-ml-rain-forecast](https://github.com/hiazevedo/weather-ml-rain-forecast) | ML Avançado · Previsão de Chuva |
+
+---
+
+### [fuel-price-pipeline-br](https://github.com/hiazevedo/fuel-price-pipeline-br)
 
 Pipeline batch com **Medallion Architecture** processando 120.823 registros de preços de combustíveis brasileiros (ANP 2004–2021).
 
@@ -23,11 +34,11 @@ Pipeline batch com **Medallion Architecture** processando 120.823 registros de p
 - 22/22 quality checks automatizados
 - Dashboard Databricks SQL com 6 queries e KPIs
 
-**Stack:** PySpark · Delta Lake · Unity Catalog · Databricks SQL · Matplotlib/Seaborn
+**Stack:** PySpark · Delta Lake · Unity Catalog · Databricks Asset Bundles · Databricks SQL · Matplotlib/Seaborn
 
 ---
 
-### 🌍 [earthquake-streaming-pipeline](https://github.com/hiazevedo/earthquake-streaming-pipeline)
+### [earthquake-streaming-pipeline](https://github.com/hiazevedo/earthquake-streaming-pipeline)
 
 Pipeline de **streaming em tempo real** coletando dados sísmicos da API USGS com Auto Loader e Structured Streaming.
 
@@ -39,11 +50,11 @@ Pipeline de **streaming em tempo real** coletando dados sísmicos da API USGS co
 - 29/29 quality checks automatizados
 - Loop de micro-batches para simular streaming contínuo
 
-**Stack:** Auto Loader · Structured Streaming · Delta Lake · USGS API · Matplotlib/Seaborn
+**Stack:** Auto Loader · Structured Streaming · Delta Lake · Unity Catalog · Databricks Asset Bundles · USGS API · Matplotlib/Seaborn
 
 ---
 
-### 🤖 [earthquake-ml-pipeline](https://github.com/hiazevedo/earthquake-ml-pipeline)
+### [earthquake-ml-pipeline](https://github.com/hiazevedo/earthquake-ml-pipeline)
 
 Pipeline completo de **Machine Learning** com 28.700 eventos sísmicos reais, feature engineering avançado e registro de modelos no MLflow.
 
@@ -55,26 +66,26 @@ Pipeline completo de **Machine Learning** com 28.700 eventos sísmicos reais, fe
 - Modelos registrados no MLflow Registry (v1)
 - Batch inference em 28.700 registros com predições salvas em Delta
 
-**Stack:** Spark ML · MLflow · RandomForest · Delta Lake · Feature Store · Matplotlib/Seaborn
+**Stack:** Spark ML · MLflow · RandomForest · Delta Lake · Unity Catalog · Databricks Asset Bundles · Feature Store · Matplotlib/Seaborn
 
 ---
 
-### 🌦️ [weather-dlt-pipeline](https://github.com/hiazevedo/weather-dlt-pipeline)
+### [weather-dlt-pipeline](https://github.com/hiazevedo/weather-dlt-pipeline)
 
 Pipeline meteorológico com **Delta Live Tables** coletando 87 anos de dados históricos (1940→2026) e previsão em tempo real para Birigui-SP, com Workflow automatizado rodando 4x por dia.
 
 **Destaques:**
 - **87 anos de histórico** — 755.684 registros horários
-- Delta Live Tables com 5 tabelas e 4 expectations de qualidade
+- Delta Live Tables com 5 tabelas e 7 expectations de qualidade
 - Tendência climática detectada: +1.41°C em 86 anos, -3.9mm/ano de chuva
 - Workflow agendado às 00h, 06h, 12h, 18h (Brasília)
 - Dashboard SQL com previsão do dia atualizada automaticamente
 
-**Stack:** Delta Live Tables · Databricks Workflows · Open-Meteo API · Unity Catalog · Databricks SQL
+**Stack:** Delta Live Tables · Databricks Workflows · Open-Meteo API · Unity Catalog · Databricks Asset Bundles · Databricks SQL
 
 ---
 
-### 🌧️ [weather-ml-rain-forecast](https://github.com/hiazevedo/weather-ml-rain-forecast)
+### [weather-ml-rain-forecast](https://github.com/hiazevedo/weather-ml-rain-forecast)
 
 Modelo de **Machine Learning para previsão de chuvas** em Birigui-SP treinado com 87 anos de dados, comparando XGBoost, RandomForest e Prophet, com retreinamento mensal automático e inferência integrada ao pipeline de dados.
 
@@ -86,11 +97,11 @@ Modelo de **Machine Learning para previsão de chuvas** em Birigui-SP treinado c
 - Retreinamento mensal automático via Job separado
 - Predições integradas ao dashboard em tempo real
 
-**Stack:** Scikit-learn · MLflow · Prophet · RandomForest · XGBoost · Databricks Workflows
+**Stack:** Scikit-learn · MLflow · Prophet · RandomForest · XGBoost · Unity Catalog · Databricks Asset Bundles · Databricks Workflows
 
 ---
 
-## 📈 Evolução das skills ao longo dos projetos
+## Evolução das skills ao longo dos projetos
 
 ```
 Projeto 1     Projeto 2         Projeto 3        Projeto 4         Projeto 5
@@ -100,11 +111,12 @@ Medallion     Auto Loader       Feature Eng.     Tables            Séries Temp.
 SQL Analytics Watermark/Dedup   MLflow Track.    DLT Expectations  Retreinamento
 Window Funcs  Risk Score        Model Registry   Workflows 4x/dia  Auto. Mensal
 Quality Chks  Alertas RT        Batch Inference  Dashboard RT      Threshold Opt.
+Asset Bundles Asset Bundles     Asset Bundles    Asset Bundles     Asset Bundles
 ```
 
 ---
 
-## 🏗️ Ambiente
+## Ambiente
 
 Todos os projetos foram desenvolvidos e testados no **Databricks Free Edition** com as seguintes configurações:
 
@@ -117,29 +129,32 @@ Todos os projetos foram desenvolvidos e testados no **Databricks Free Edition** 
 | Delta Lake | 3.x |
 | MLflow | 2.x |
 
+Todos os projetos incluem um `databricks.yml` com **Databricks Asset Bundles** para deploy e orquestração como código.
+
 ---
 
-## 🛠️ Skills demonstradas
+## Skills demonstradas
 
 | Skill | Projeto(s) |
 |-------|-----------|
-| Medallion Architecture | Projeto 1, 2, 3 |
-| Delta Lake (ACID, Time Travel) | Projeto 1, 2, 3, 4, 5 |
-| Unity Catalog + Volumes | Projeto 1, 2, 3, 4, 5 |
-| PySpark (DataFrames, Window Functions) | Projeto 1, 2, 3, 4, 5 |
-| Auto Loader (cloudFiles) | Projeto 2, 3 |
-| Structured Streaming + Watermark | Projeto 2 |
-| Delta Live Tables + Expectations | Projeto 4 |
-| Databricks Workflows (agendamento) | Projeto 4, 5 |
-| Feature Engineering | Projeto 3, 5 |
-| MLflow Tracking + Registry | Projeto 3, 5 |
-| Spark ML Pipelines | Projeto 3 |
-| Scikit-learn (RF, XGBoost) | Projeto 5 |
-| Prophet (séries temporais) | Projeto 5 |
-| Retreinamento automático | Projeto 5 |
-| Quality Checks automatizados | Projeto 1, 2, 3 |
-| Databricks SQL + Dashboards | Projeto 1, 4, 5 |
-| Visualizações (Matplotlib/Seaborn) | Projeto 1, 2, 3, 4 |
+| Medallion Architecture | 1, 2, 3 |
+| Delta Lake (ACID, Time Travel) | 1, 2, 3, 4, 5 |
+| Unity Catalog + Volumes | 1, 2, 3, 4, 5 |
+| Databricks Asset Bundles | 1, 2, 3, 4, 5 |
+| PySpark (DataFrames, Window Functions) | 1, 2, 3, 4, 5 |
+| Auto Loader (cloudFiles) | 2, 3 |
+| Structured Streaming + Watermark | 2 |
+| Delta Live Tables + Expectations | 4 |
+| Databricks Workflows (agendamento) | 4, 5 |
+| Feature Engineering | 3, 5 |
+| MLflow Tracking + Registry | 3, 5 |
+| Spark ML Pipelines | 3 |
+| Scikit-learn (RF, XGBoost) | 5 |
+| Prophet (séries temporais) | 5 |
+| Retreinamento automático | 5 |
+| Quality Checks automatizados | 1, 2, 3 |
+| Databricks SQL + Dashboards | 1, 4, 5 |
+| Visualizações (Matplotlib/Seaborn) | 1, 2, 3, 4 |
 
 ---
 
