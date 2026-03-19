@@ -20,6 +20,7 @@
 | 3 | [earthquake-ml-pipeline](https://github.com/hiazevedo/earthquake-ml-pipeline) | ML · MLflow · Spark ML |
 | 4 | [weather-dlt-pipeline](https://github.com/hiazevedo/weather-dlt-pipeline) | DLT · Workflows · Open-Meteo |
 | 5 | [weather-ml-rain-forecast](https://github.com/hiazevedo/weather-ml-rain-forecast) | ML Avançado · Previsão de Chuva |
+| 6 | [brazil-education-pipeline](https://github.com/hiazevedo/brazil-education-pipeline) | Educação · ENEM · ML · GitHub Actions |
 
 ---
 
@@ -101,17 +102,33 @@ Modelo de **Machine Learning para previsão de chuvas** em Birigui-SP treinado c
 
 ---
 
+### [brazil-education-pipeline](https://github.com/hiazevedo/brazil-education-pipeline)
+
+Pipeline end-to-end cruzando **ENEM, Censo Escolar e IDEB** para revelar os fatores que mais impactam o desempenho educacional no Brasil, com 8 tabelas Gold analíticas, classificador ML e clustering de municípios.
+
+**Destaques:**
+- Ingestão automática anual via **GitHub Actions** (download INEP → Volume UC)
+- 8 tabelas Gold: desigualdade regional, vulnerabilidade municipal, aluno improvável, gap de gênero e mais
+- `infra_score` composto de 5 indicadores do Censo Escolar (energia, água, biblioteca, laboratório, internet)
+- RandomForestClassifier registrado no MLflow Registry (alias `champion`)
+- K-Means agrupando ~5.500 municípios em 5 perfis educacionais
+- 13 visualizações Matplotlib/Seaborn com análise narrativa
+
+**Stack:** PySpark · Scikit-learn · MLflow · Delta Lake · Unity Catalog · Databricks Asset Bundles · GitHub Actions · Matplotlib/Seaborn
+
+---
+
 ## Evolução das skills ao longo dos projetos
 
 ```
-Projeto 1     Projeto 2         Projeto 3        Projeto 4         Projeto 5
-────────      ────────          ────────         ────────          ────────
-Batch         Streaming         ML               Delta Live        ML Avançado
-Medallion     Auto Loader       Feature Eng.     Tables            Séries Temp.
-SQL Analytics Watermark/Dedup   MLflow Track.    DLT Expectations  Retreinamento
-Window Funcs  Risk Score        Model Registry   Workflows 4x/dia  Auto. Mensal
-Quality Chks  Alertas RT        Batch Inference  Dashboard RT      Threshold Opt.
-Asset Bundles Asset Bundles     Asset Bundles    Asset Bundles     Asset Bundles
+Projeto 1     Projeto 2         Projeto 3        Projeto 4         Projeto 5         Projeto 6
+────────      ────────          ────────         ────────          ────────          ────────
+Batch         Streaming         ML               Delta Live        ML Avançado       Dados Públicos
+Medallion     Auto Loader       Feature Eng.     Tables            Séries Temp.      GitHub Actions
+SQL Analytics Watermark/Dedup   MLflow Track.    DLT Expectations  Retreinamento     Multi-source Join
+Window Funcs  Risk Score        Model Registry   Workflows 4x/dia  Auto. Mensal      Clustering
+Quality Chks  Alertas RT        Batch Inference  Dashboard RT      Threshold Opt.    Vulnerabilidade
+Asset Bundles Asset Bundles     Asset Bundles    Asset Bundles     Asset Bundles     Asset Bundles
 ```
 
 ---
@@ -137,24 +154,27 @@ Todos os projetos incluem um `databricks.yml` com **Databricks Asset Bundles** p
 
 | Skill | Projeto(s) |
 |-------|-----------|
-| Medallion Architecture | 1, 2, 3 |
-| Delta Lake (ACID, Time Travel) | 1, 2, 3, 4, 5 |
-| Unity Catalog + Volumes | 1, 2, 3, 4, 5 |
-| Databricks Asset Bundles | 1, 2, 3, 4, 5 |
-| PySpark (DataFrames, Window Functions) | 1, 2, 3, 4, 5 |
+| Medallion Architecture | 1, 2, 3, 6 |
+| Delta Lake (ACID, Time Travel) | 1, 2, 3, 4, 5, 6 |
+| Unity Catalog + Volumes | 1, 2, 3, 4, 5, 6 |
+| Databricks Asset Bundles | 1, 2, 3, 4, 5, 6 |
+| PySpark (DataFrames, Window Functions) | 1, 2, 3, 4, 5, 6 |
 | Auto Loader (cloudFiles) | 2, 3 |
 | Structured Streaming + Watermark | 2 |
 | Delta Live Tables + Expectations | 4 |
 | Databricks Workflows (agendamento) | 4, 5 |
-| Feature Engineering | 3, 5 |
-| MLflow Tracking + Registry | 3, 5 |
+| GitHub Actions (ingestão automática) | 6 |
+| Feature Engineering | 3, 5, 6 |
+| MLflow Tracking + Registry | 3, 5, 6 |
 | Spark ML Pipelines | 3 |
-| Scikit-learn (RF, XGBoost) | 5 |
+| Scikit-learn (RF, XGBoost, KMeans) | 5, 6 |
 | Prophet (séries temporais) | 5 |
 | Retreinamento automático | 5 |
+| Clustering não supervisionado | 6 |
+| Multi-source join (3 fontes) | 6 |
 | Quality Checks automatizados | 1, 2, 3 |
 | Databricks SQL + Dashboards | 1, 4, 5 |
-| Visualizações (Matplotlib/Seaborn) | 1, 2, 3, 4 |
+| Visualizações (Matplotlib/Seaborn) | 1, 2, 3, 4, 6 |
 
 ---
 
