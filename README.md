@@ -21,6 +21,7 @@
 | 4 | [weather-dlt-pipeline](https://github.com/hiazevedo/weather-dlt-pipeline) | DLT · Workflows · Open-Meteo |
 | 5 | [weather-ml-rain-forecast](https://github.com/hiazevedo/weather-ml-rain-forecast) | ML Avançado · Previsão de Chuva |
 | 6 | [brazil-education-pipeline](https://github.com/hiazevedo/brazil-education-pipeline) | Educação · ENEM · ML · GitHub Actions |
+| 7 | [brazilian-retail-lakehouse](https://github.com/hiazevedo/brazilian-retail-lakehouse) | Lakehouse Completo · Kafka · dbt · ML · Observabilidade |
 
 ---
 
@@ -64,10 +65,10 @@ Pipeline completo de **Machine Learning** com 28.700 eventos sísmicos reais, fe
 - 5 modelos treinados e comparados com MLflow tracking
 - RandomForest: **F1 0.9888** (classificação) e **R² 0.9881** (regressão)
 - Matriz de confusão e Feature Importance por classe
-- Modelos registrados no MLflow Registry (v1)
+- Modelos registrados no MLflow (experiment tracking)
 - Batch inference em 28.700 registros com predições salvas em Delta
 
-**Stack:** Spark ML · MLflow · RandomForest · Delta Lake · Unity Catalog · Databricks Asset Bundles · Feature Store · Matplotlib/Seaborn
+**Stack:** Spark ML · MLflow · RandomForest · Delta Lake · Unity Catalog · Databricks Asset Bundles · Matplotlib/Seaborn
 
 ---
 
@@ -110,7 +111,7 @@ Pipeline end-to-end cruzando **ENEM, Censo Escolar e IDEB** para revelar os fato
 - Ingestão automática anual via **GitHub Actions** (download INEP → Volume UC)
 - 8 tabelas Gold: desigualdade regional, vulnerabilidade municipal, aluno improvável, gap de gênero e mais
 - `infra_score` composto de 5 indicadores do Censo Escolar (energia, água, biblioteca, laboratório, internet)
-- RandomForestClassifier registrado no MLflow Registry (alias `champion`)
+- RandomForestClassifier registrado no MLflow (experiment tracking)
 - K-Means agrupando ~5.500 municípios em 5 perfis educacionais
 - 13 visualizações Matplotlib/Seaborn com análise narrativa
 
@@ -118,17 +119,40 @@ Pipeline end-to-end cruzando **ENEM, Censo Escolar e IDEB** para revelar os fato
 
 ---
 
+### [brazilian-retail-lakehouse](https://github.com/hiazevedo/brazilian-retail-lakehouse)
+
+**Capstone do portfólio** — plataforma lakehouse end-to-end simulando o ecossistema de dados de uma rede de varejo brasileira com múltiplos domínios, desenvolvida em 6 etapas evolutivas que cobrem desde a ingestão em tempo real até operacionalização de modelos de ML com monitoramento contínuo.
+
+**Destaques:**
+- **Eventos em tempo real** — ShadowTraffic publica em 4 tópicos Kafka (vendas, estoque, clientes, pagamentos) simulando horários de pico
+- **Medallion Architecture completa** — Bronze/Silver via Delta Live Tables com validações de qualidade, Gold via dbt com modelo dimensional (fct + dims + marts)
+- **Contratos de dados** — 4 contratos YAML com schema, SLAs e regras de qualidade; violações CRITICAL bloqueiam o pipeline automaticamente
+- **Plataforma de ML** — 2 modelos LightGBM (previsão de demanda e detecção de fraude) com Feature Store, Batch Scoring em ~750K transações e A/B test champion vs challenger
+- **Observabilidade** — Health Score por domínio, SLA report e PSI drift monitoring nas features dos modelos
+- **3 jobs consolidados** orquestram 15 notebooks com dependências encadeadas
+
+**Resultados dos modelos:**
+
+| Modelo | Algoritmo | Métricas |
+|--------|-----------|---------|
+| `demand_forecast` | LightGBM Regressor | RMSE=6.54 · R²=0.9999 |
+| `fraud_detector` | LightGBM Classifier | F1=0.982 · AUC-ROC=1.0 · Precision=0.967 |
+
+**Stack:** Apache Kafka · Confluent Cloud · Delta Live Tables · dbt · LightGBM · MLflow · ShadowTraffic · Unity Catalog · Databricks Asset Bundles · Databricks Workflows · Python
+
+---
+
 ## Evolução das skills ao longo dos projetos
 
 ```
-Projeto 1     Projeto 2         Projeto 3        Projeto 4         Projeto 5         Projeto 6
-────────      ────────          ────────         ────────          ────────          ────────
-Batch         Streaming         ML               Delta Live        ML Avançado       Dados Públicos
-Medallion     Auto Loader       Feature Eng.     Tables            Séries Temp.      GitHub Actions
-SQL Analytics Watermark/Dedup   MLflow Track.    DLT Expectations  Retreinamento     Multi-source Join
-Window Funcs  Risk Score        Model Registry   Workflows 4x/dia  Auto. Mensal      Clustering
-Quality Chks  Alertas RT        Batch Inference  Dashboard RT      Threshold Opt.    Vulnerabilidade
-Asset Bundles Asset Bundles     Asset Bundles    Asset Bundles     Asset Bundles     Asset Bundles
+Projeto 1     Projeto 2         Projeto 3        Projeto 4         Projeto 5         Projeto 6         Projeto 7
+────────      ────────          ────────         ────────          ────────          ────────          ────────
+Batch         Streaming         ML               Delta Live        ML Avançado       Dados Públicos    Lakehouse Completo
+Medallion     Auto Loader       Feature Eng.     Tables            Séries Temp.      GitHub Actions    Kafka + DLT + dbt
+SQL Analytics Watermark/Dedup   MLflow Track.    DLT Expectations  Retreinamento     Multi-source Join Contratos de Dados
+Window Funcs  Risk Score        Model Registry   Workflows 4x/dia  Threshold Opt.    Clustering        Observabilidade
+Quality Chks  Alertas RT        Batch Inference  Dashboard RT      Auto. Mensal      Vulnerabilidade   Feature Store
+Asset Bundles Asset Bundles     Asset Bundles    Asset Bundles     Asset Bundles     Asset Bundles     A/B Test · PSI Drift
 ```
 
 ---
@@ -154,28 +178,35 @@ Todos os projetos incluem um `databricks.yml` com **Databricks Asset Bundles** p
 
 | Skill | Projeto(s) |
 |-------|-----------|
-| Medallion Architecture | 1, 2, 3, 6 |
-| Delta Lake (ACID, Time Travel) | 1, 2, 3, 4, 5, 6 |
-| Unity Catalog + Volumes | 1, 2, 3, 4, 5, 6 |
-| Databricks Asset Bundles | 1, 2, 3, 4, 5, 6 |
-| PySpark (DataFrames, Window Functions) | 1, 2, 3, 4, 5, 6 |
+| Medallion Architecture | 1, 2, 3, 6, 7 |
+| Delta Lake (ACID, Time Travel) | 1, 2, 3, 4, 5, 6, 7 |
+| Unity Catalog + Volumes | 1, 2, 3, 4, 5, 6, 7 |
+| Databricks Asset Bundles | 1, 2, 3, 4, 5, 6, 7 |
+| PySpark (DataFrames, Window Functions) | 1, 2, 3, 4, 5, 6, 7 |
 | Auto Loader (cloudFiles) | 2, 3 |
 | Structured Streaming + Watermark | 2 |
-| Delta Live Tables + Expectations | 4 |
-| Databricks Workflows (agendamento) | 4, 5 |
+| Delta Live Tables + Expectations | 4, 7 |
+| Databricks Workflows (agendamento) | 4, 5, 7 |
 | GitHub Actions (ingestão automática) | 6 |
-| Feature Engineering | 3, 5, 6 |
-| MLflow Tracking + Registry | 3, 5, 6 |
+| Feature Engineering | 3, 5, 6, 7 |
+| MLflow Tracking | 3, 5, 6, 7 |
 | Spark ML Pipelines | 3 |
 | Scikit-learn (RF, XGBoost, KMeans) | 5, 6 |
+| LightGBM (Regressor + Classifier) | 7 |
 | Prophet (séries temporais) | 5 |
-| Retreinamento automático | 5 |
+| Retreinamento automático | 5, 7 |
 | Clustering não supervisionado | 6 |
 | Multi-source join (3 fontes) | 6 |
-| Quality Checks automatizados | 1, 2, 3 |
+| dbt (modelo dimensional) | 7 |
+| Apache Kafka + Confluent Cloud | 7 |
+| Contratos de Dados (YAML + validação) | 7 |
+| Feature Store + Batch Scoring | 7 |
+| A/B Test (champion vs challenger) | 7 |
+| PSI Drift Monitoring | 7 |
+| Quality Checks automatizados | 1, 2, 3, 7 |
 | Databricks SQL + Dashboards | 1, 4, 5 |
 | Visualizações (Matplotlib/Seaborn) | 1, 2, 3, 4, 6 |
 
 ---
 
-Portfólio desenvolvido com foco em projetos práticos que cobrem o ciclo completo de engenharia de dados: ingestão → transformação → qualidade → streaming → analytics → machine learning → automação.
+Portfólio desenvolvido com foco em projetos práticos que cobrem o ciclo completo de engenharia de dados: ingestão → transformação → qualidade → streaming → analytics → machine learning → automação → observabilidade.
